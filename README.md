@@ -48,7 +48,7 @@ Two Managed Identities are used:
 
 ### Microsoft Graph API Permissions
 
-The Automation Account Managed Identity is granted **least-privilege** Microsoft Graph permissions required to read application credentials.
+The Automation Account Managed Identity is granted **least-privilege** Microsoft Graph permissions required to retrieve application secrets.
 
 ![Graph Permissions](screenshots/automation-mi-graph-permissions.png)
 

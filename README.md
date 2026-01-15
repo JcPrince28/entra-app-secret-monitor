@@ -113,14 +113,51 @@ The Runbook output is parsed using a defined JSON schema to enable structured co
 
 ### Conditional Logic
 
-The Logic App evaluates the Runbook output in multiple stages:
+After the Automation Runbook completes, the Logic App evaluates the raw output returned by the **Create Job Output** action.  
+At this stage, the output is still a **stringified JSON payload**, as it has not yet passed through the *Parse JSON* action.
 
-1. **Status == Error**
-   - Routes to an error-notification flow
-2. **Empty Data Array**
-   - Ends execution silently (no expiring secrets)
-3. **Secrets Found**
-   - Formats data and sends a notification email
+The workflow handles three distinct scenarios:
+
+---
+
+#### 1. Error Returned from Runbook
+
+If the Runbook encounters an exception, the output contains a `status` value of `Error`.  
+The Logic App detects this condition and routes execution to an error-handling path.
+
+![Runbook Error Output](job-output-error.png)
+
+This allows visibility into failures while preventing silent or misleading executions.
+
+---
+
+#### 2. Successful Execution with No Expiring Secrets
+
+If the Runbook runs successfully but no secrets meet the expiration threshold, the output contains:
+- `status: Success`
+- `data: []` (empty array)
+
+![Empty Data Array Output](job-output-empty-data-array.png)
+
+In this case, the Logic App exits gracefully without sending a notification, avoiding unnecessary emails.
+
+---
+
+#### 3. Successful Execution with Expiring Secrets Found
+
+When expiring secrets are detected, the output includes a populated `data` array containing secret metadata.
+
+![Successful Output with Data](job-output-success.png)
+
+The Logic App then:
+1. Parses the JSON payload
+2. Formats the secret data
+3. Sends a notification email containing the relevant details
+
+---
+
+This conditional approach ensures that alerts are **actionable, accurate, and noise-free**.
+
 
 ### Formatting Secret Data
 

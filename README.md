@@ -149,15 +149,20 @@ This allows visibility into failures while preventing silent or misleading execu
 
 ---
 
-#### 2. Successful Execution with No Expiring Secrets
+#### 2. Successful Execution – Empty Data Evaluation
 
-If the Runbook runs successfully but no secrets meet the expiration threshold, the output contains:
-- `status: Success`
-- `data: []` (empty array)
+When the Runbook returns `status: Success`, the Logic App evaluates whether any expiring secrets were found.
 
-![Empty Data Array Output](job-output-empty-data-array.png)
+At this stage, the output from the **Create Job Output** action is still a **stringified JSON payload** and has not yet been parsed.  
+The condition action uses an expression to determine if the `data` array is empty.
 
-In this case, the Logic App exits gracefully without sending a notification, avoiding unnecessary emails.
+![Empty Data Condition Expression](condition-empty-data-expression.png)
+
+- **True (Empty Array)**  
+  No secrets are expiring. The workflow ends silently, preventing unnecessary notifications.
+
+- **False (Data Present)**  
+  One or more secrets are detected. The workflow continues to parse, format, and send a notification email.
 
 ---
 

@@ -143,7 +143,7 @@ The workflow handles three distinct scenarios:
 If the Runbook encounters an exception, the output contains a `status` value of `Error`.  
 The Logic App detects this condition and routes execution to an error-handling path.
 
-![Runbook Error Output](job-output-error.png)
+![Runbook Error Output](screenshots/job-output-error.png)
 
 This allows visibility into failures while preventing silent or misleading executions.
 
@@ -156,7 +156,7 @@ When the Runbook returns `status: Success`, the Logic App evaluates whether any 
 At this stage, the output from the **Create Job Output** action is still a **stringified JSON payload** and has not yet been parsed.  
 The condition action uses an expression to determine if the `data` array is empty.
 
-![Empty Data Condition Expression](condition-empty-data-expression.png)
+![Empty Data Condition Expression](screenshots/condition-empty-data-expression.png)
 
 - **True (Empty Array)**  
   No secrets are expiring. The workflow ends silently, preventing unnecessary notifications.
@@ -170,7 +170,7 @@ The condition action uses an expression to determine if the `data` array is empt
 
 When expiring secrets are detected, the output includes a populated `data` array containing secret metadata.
 
-![Successful Output with Data](job-output-success.png)
+![Successful Output with Data](screenshots/job-output-success.png)
 
 The Logic App then:
 1. Parses the JSON payload

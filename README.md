@@ -80,20 +80,6 @@ The Automation Runbook queries Azure Entra ID App Registrations and evaluates th
 
 ---
 
-## PowerShell Runbook
-
-The PowerShell Runbook performs the following operations:
-
-1. Authenticates to Microsoft Graph using Managed Identity
-2. Retrieves App Registration objects
-3. Enumerates client secrets
-4. Evaluates expiration dates
-5. Classifies secrets as:
-   - `Expired`
-   - `ExpiringSoon`
-6. Outputs structured JSON
-7. Handles errors using `try/catch`
-
 The Runbook can be executed independently using the **Azure Automation Test Pane**.
 
 ### Successful Test Pane Output

@@ -58,7 +58,7 @@ The Automation Account Managed Identity is granted **least-privilege** Microsoft
 The core detection logic is implemented as an Azure Automation Runbook written in PowerShell.  
 The Runbook authenticates to Microsoft Graph using **Managed Identity**, queries application secrets, and returns a structured JSON payload for downstream processing.
 
-![PowerShell Runbook Logic](runbook-powershell-logic.png)
+![PowerShell Runbook Logic](screenshots/runbook-powershell-logic.png)
 
 Key responsibilities of the Runbook:
 - Authenticate to Microsoft Graph using Managed Identity

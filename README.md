@@ -107,14 +107,6 @@ The Logic App:
 
 ---
 
-### JSON Parsing
-
-The Runbook output is parsed using a defined JSON schema to enable structured conditions and branching logic.
-
-![Parse JSON Schema](screenshots/parse-json-schema.png)
-
----
-
 ### Conditional Logic
 
 After the Automation Runbook completes, the Logic App evaluates the raw output returned by the **Create Job Output** action.  
@@ -162,6 +154,14 @@ The Logic App then:
 1. Parses the JSON payload
 2. Formats the secret data
 3. Sends a notification email containing the relevant details
+
+---
+
+### JSON Parsing
+
+The Runbook output is parsed using a defined JSON schema to enable structured conditions and branching logic.
+
+![Parse JSON Schema](screenshots/parse-json-schema.png)
 
 ---
 

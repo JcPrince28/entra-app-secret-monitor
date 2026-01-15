@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Entra App Secret Monitor** is an Azure-native automation solution designed to proactively detect **expiring Azure Entra ID (Azure AD) App Registration secrets** and notify teams before authentication failures and production downtime occur.
+Entra App Secret Monitor is a **custom Azure automation solution** I built to proactively detect expiring Azure Entra ID (Azure AD) App Registration secrets and notify teams before authentication failures and production downtime occur.
 
 Azure does not provide a built-in notification mechanism for App Registration secret expiration. This project addresses that gap using secure, scalable, and production-ready Azure services.
 
